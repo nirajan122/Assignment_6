@@ -2,55 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projects | Climate Solutions</title>
-  <link href="/css/main.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects</title>
+  <link href="/css/main.css" rel="stylesheet">
 </head>
+<body class="bg-base-200">
 
-<body class="bg-base-100 text-base-content">
-
-  <!-- Navbar -->
   <%- include('partials/navbar', { page: '/solutions/projects' }) %>
 
-  <!-- Header Section -->
-  <section class="container mx-auto my-10">
-    <div class="hero bg-base-200 rounded-lg p-6 text-center">
-      <div class="hero-content flex flex-col">
-        <h1 class="text-4xl font-bold mb-4">Projects</h1>
-        <p class="mb-4">Explore innovative projects organized by environmental sector:</p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href="/solutions/projects?sector=energy" class="btn btn-sm btn-outline">Energy</a>
-          <a href="/solutions/projects?sector=transport" class="btn btn-sm btn-outline">Transport</a>
-          <a href="/solutions/projects?sector=industry" class="btn btn-sm btn-outline">Industry</a>
-        </div>
+  <section class="hero bg-base-300 py-10 text-center">
+    <div class="hero-content flex-col">
+      <h1 class="text-4xl font-bold">All Projects</h1>
+      <p class="py-2">Browse climate solution projects across sectors</p>
+      <div class="flex flex-wrap gap-2 justify-center mt-4">
+        <a class="btn" href="/solutions/projects?sector=Industry">Industry</a>
+        <a class="btn" href="/solutions/projects?sector=Transportation">Transportation</a>
+        <a class="btn" href="/solutions/projects?sector=Land Sinks">Land Sinks</a>
       </div>
     </div>
   </section>
 
-  <!-- Projects Table -->
-  <section class="container mx-auto px-4 mb-10">
+  <section class="p-4">
     <div class="overflow-x-auto">
-      <table class="table table-zebra w-full">
+      <table class="table w-full">
         <thead>
           <tr>
             <th>Title</th>
             <th>Sector</th>
             <th>Summary</th>
-            <th></th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <% projects.forEach(project => { %>
+          <% projects.forEach(p => { %>
             <tr>
-              <td><%= project.title %></td>
+              <td><%= p.title %></td>
               <td>
-                <a href="/solutions/projects?sector=<%= project.sector %>" class="btn btn-sm btn-ghost">
-                  <%= project.sector %>
+                <a class="btn btn-sm" href="/solutions/projects?sector=<%= encodeURIComponent(p.Sector?.sector_name || '') %>">
+                  <%= p.Sector?.sector_name || 'N/A' %>
                 </a>
               </td>
-              <td><%= project.summary_short %></td>
-              <td>
-                <a href="/solutions/projects/<%= project.id %>" class="btn btn-sm btn-primary">Details</a>
+              <td><%= p.summary_short %></td>
+              <td class="flex flex-wrap gap-2">
+                <a class="btn btn-sm btn-info" href="/solutions/projects/<%= p.id %>">Details</a>
+                <a class="btn btn-sm btn-success" href="/solutions/editProject/<%= p.id %>">Edit</a>
+                <a class="btn btn-sm btn-error" href="/solutions/deleteProject/<%= p.id %>">Delete</a>
               </td>
             </tr>
           <% }) %>

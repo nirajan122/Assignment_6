@@ -2,72 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Climate Solutions</title>
-  <link href="/css/main.css" rel="stylesheet" />
+  <link href="/css/main.css" rel="stylesheet">
 </head>
+<body class="bg-base-200">
 
-<body class="bg-base-200 text-base-content min-h-screen">
-
-  <!-- Navbar Partial with Active Page -->
   <%- include('partials/navbar', { page: '/' }) %>
 
-  <!-- Hero Section -->
-  <section class="hero bg-primary text-primary-content py-20">
-    <div class="hero-content text-center">
-      <div class="max-w-xl">
-        <h1 class="text-5xl font-bold">Build a Greener Future</h1>
-        <p class="py-6 text-lg">Explore real-world projects leading the way in climate innovation.</p>
-        <a href="/solutions/projects" class="btn btn-secondary hover:scale-105 transition duration-300 ease-in-out">
-          View Projects
-        </a>
+  <div class="container mx-auto p-6">
+    <div class="hero bg-base-300 mb-8 rounded-lg">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Explore Climate Projects</h1>
+          <p class="py-6">Learn how different sectors are helping combat climate change.</p>
+          <a href="/solutions/projects" class="btn btn-primary">View All Projects</a>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Featured Projects Section -->
-  <section class="container mx-auto px-4 py-10">
-    <h2 class="text-3xl font-semibold mb-6 text-center">Featured Projects</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8" id="projectCards"></div>
-  </section>
-
-  <!-- Dynamic Project Loading Script -->
-  <script>
-    fetch('/data/projectData.json')
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById('projectCards');
-        const top3 = data.slice(0, 3);
-        top3.forEach(project => {
-          container.innerHTML += `
-            <div class="card bg-base-200 shadow-md hover:shadow-xl transition hover:scale-105">
-              <figure>
-                <img src="${project.feature_img_url}" alt="${project.title}" class="h-48 w-full object-cover" />
-              </figure>
-              <div class="card-body">
-                <h2 class="card-title">${project.title}</h2>
-                <p>${project.summary_short}</p>
-                <div class="card-actions justify-end">
-                  <a href="/solutions/projects/${project.id}" class="btn btn-primary btn-sm">Details</a>
-                </div>
-              </div>
-            </div>
-          `;
-        });
-      })
-      .catch(err => {
-        document.getElementById('projectCards').innerHTML =
-          '<p class="text-red-500 col-span-3 text-center">Error loading projects.</p>';
-        console.error(err);
-      });
-  </script>
-
-  <!-- Footer -->
-  <footer class="footer items-center p-4 bg-base-300 text-base-content mt-10">
-    <div class="items-center grid-flow-col mx-auto">
-      <p>© 2025 Climate Solutions • Built for WEB322</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="card bg-base-100 shadow-xl">
+        <figure><img src="https://drawdown.org/sites/default/files/solutions/solution_farmlandrestoration01.jpg" alt="Project 1" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">Abandoned Farmland Restoration</h2>
+          <p>Restoration can bring degraded farmland back into productivity and sequester carbon.</p>
+          <div class="card-actions justify-end">
+            <a href="/solutions/projects/1" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="card bg-base-100 shadow-xl">
+        <figure><img src="https://drawdown.org/sites/default/files/solutions2020/solution_alternativecement02.jpg" alt="Project 2" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">Alternative Cement</h2>
+          <p>Reformulation can reduce emissions by millions of metric tons each year.</p>
+          <div class="card-actions justify-end">
+            <a href="/solutions/projects/2" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card bg-base-100 shadow-xl">
+        <figure><img src="https://drawdown.org/sites/default/files/solutions2020/solution_bicycle_infrastructure.jpg" alt="Project 3" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">Bicycle Infrastructure</h2>
+          <p>Infrastructure supports safe and abundant bicycle use, reducing emissions.</p>
+          <div class="card-actions justify-end">
+            <a href="/solutions/projects/3" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </footer>
-
+  </div>
 </body>
 </html>

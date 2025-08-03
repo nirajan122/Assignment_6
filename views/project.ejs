@@ -2,78 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title><%= project.title %> | Climate Solutions</title>
-  <link href="/css/main.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= project.title %> - Project Details</title>
+  <link href="/css/main.css" rel="stylesheet">
 </head>
+<body class="bg-base-200">
 
-<body class="bg-base-100 text-base-content">
-
-  <!-- Navbar Partial (no active link for this page) -->
   <%- include('partials/navbar', { page: '' }) %>
 
-  <!-- Hero Section -->
-  <section class="container mx-auto my-12">
-    <div class="hero bg-base-200 rounded-lg p-8">
-      <div class="hero-content text-center">
-        <div class="max-w-xl">
-          <h1 class="text-4xl font-bold"><%= project.title %></h1>
-          <p class="py-4 text-lg">
-            Below, you will find detailed information about the project: <strong><%= project.title %></strong>
-          </p>
-        </div>
-      </div>
+  <section class="hero bg-base-300 py-10 text-center">
+    <div class="hero-content flex-col">
+      <h1 class="text-4xl font-bold"><%= project.title %></h1>
+      <p class="py-2 text-lg text-gray-500">
+        <%= project.Sector ? project.Sector.sector_name : 'Unknown Sector' %>
+      </p>
+      <img src="<%= project.feature_img_url %>" alt="<%= project.title %> image" class="max-w-xl rounded-lg mt-4">
+      <a href="/solutions/editProject/<%= project.id %>" class="btn btn-outline btn-success mt-4">
+  Edit Project
+</a>
+
     </div>
   </section>
 
-  <!-- Project Details Section -->
-  <section class="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+  <section class="p-6 max-w-3xl mx-auto">
+    <h2 class="text-xl font-semibold mb-2">Intro</h2>
+    <p class="mb-4"><%= project.intro_short %></p>
 
-    <!-- Project Image -->
-    <div class="w-full">
-      <img src="<%= project.feature_img_url %>" alt="<%= project.title %>" class="rounded-lg shadow-md w-full object-cover">
-    </div>
+    <h2 class="text-xl font-semibold mb-2">Impact</h2>
+    <p class="mb-4"><%= project.impact %></p>
 
-    <!-- Project Info -->
-    <div class="space-y-4">
-      <h2 class="text-2xl font-semibold">Summary</h2>
-      <p class="text-lg"><%= project.intro_short %></p>
-
-      <h2 class="text-2xl font-semibold">Impact</h2>
-      <p class="text-lg"><%= project.impact %></p>
-
-      <a href="<%= project.original_source_url %>" target="_blank" class="btn btn-secondary mt-4">Learn More</a>
-    </div>
-
+    <h2 class="text-xl font-semibold mb-2">Source</h2>
+    <a href="<%= project.original_source_url %>" class="text-blue-600 underline" target="_blank">
+      View Original Source
+    </a>
   </section>
-
-  <!-- Quote Section -->
-  <section class="container mx-auto px-4 py-10 text-center">
-    <h2 class="text-2xl font-semibold mb-4">Inspired Words</h2>
-    <blockquote class="italic text-lg text-gray-700" id="quote"></blockquote>
-    <p class="mt-2 font-semibold" id="author"></p>
-  </section>
-
-  <!-- Back Button -->
-  <div class="text-center mb-10">
-    <a href="#" onclick="history.back(); return false;" class="btn btn-outline">← Go Back</a>
-  </div>
-
-  <!-- Quote Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      fetch("https://dummyjson.com/quotes/random")
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById("quote").textContent = `"${data.quote}"`;
-          document.getElementById("author").textContent = `— ${data.author}`;
-        })
-        .catch(err => {
-          document.getElementById("quote").textContent = "Could not load quote.";
-          console.error(err);
-        });
-    });
-  </script>
 
 </body>
 </html>

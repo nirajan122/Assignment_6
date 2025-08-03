@@ -2,52 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Climate Solutions</title>
-  <link rel="stylesheet" href="/css/main.css" />
+  <link href="/css/main.css" rel="stylesheet">
 </head>
+<body class="bg-base-200">
 
-<body class="bg-base-100 text-base-content">
-
-  <!-- Navbar Partial with "About" Highlighted -->
   <%- include('partials/navbar', { page: '/about' }) %>
 
-  <!-- About Hero Section -->
-  <div class="container mx-auto my-8">
-    <div class="hero bg-base-200 rounded-lg p-8">
+  <div class="container mx-auto p-6">
+    <div class="hero bg-base-300 mb-8 rounded-lg">
       <div class="hero-content text-center">
         <div class="max-w-md">
-          <h1 class="text-5xl font-bold">About Me</h1>
-          <p class="py-6">
-            Hi! I’m a person who loves the environment and is saddened by the growing climate change issues. I'm passionate about sustainable solutions and full-stack development. This site showcases projects that aim to tackle environmental challenges.
-          </p>
+          <h1 class="text-5xl font-bold">About</h1>
+          <p class="py-6">All about me, this course, and my interests.</p>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- About Content Section -->
-  <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-6 pb-12 items-center">
-
-    <div class="flex justify-center">
-      <img src="/image/Nirajan.jpg" alt="My photo" class="rounded-lg shadow-lg" style="width: 40em;" />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="Profile" class="rounded-xl shadow-lg">
+      </div>
+      <div class="prose">
+        <p>Hi! I'm Abishek Adhikari, a student at Seneca Polytechnic. I’m currently studying CPP.</p>
+        <p>I'm passionate about building full-stack apps, solving real-world problems, and learning new technologies like Node.js, React, and Tailwind CSS. When I’m not coding, I do wildlife photography.</p>
+        <p>This site showcases some impactful climate solutions across various sectors.</p>
+      </div>
     </div>
-
-    <div>
-      <h2 class="text-2xl font-semibold mb-4">Who I Am</h2>
-      <p class="text-lg leading-relaxed">
-        I’m currently studying at Seneca College in the Computer Programming program. I enjoy building modern web apps using Node.js, Express, and databases. I’m also interested in using technology to solve real-world issues like climate change. Outside of coding, I love gaming, hiking, and exploring new web development tools.
-      </p>
-    </div>
-
   </div>
-
-  <!-- Footer -->
-  <footer class="footer p-10 bg-base-200 text-base-content">
-    <aside>
-      <p>© 2025 Climate Solutions Project<br/>Seneca College - WEB322</p>
-    </aside>
-  </footer>
-
 </body>
 </html>
